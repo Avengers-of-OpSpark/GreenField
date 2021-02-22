@@ -10,6 +10,7 @@ class Modal extends Component {
       description: '',
       picture: null,
       rating: 1,
+      status: 'past',
       id: 0
     };
     this.handleChange = this.handleChange.bind(this);
@@ -34,7 +35,6 @@ class Modal extends Component {
   }
 
   handleRatingChange(event) {
-    console.info('lineeeeeeee 36 here', event);
     this.setState({
       rating: event
     });
@@ -56,10 +56,11 @@ class Modal extends Component {
 
   uploadFormWithData() {
     const formData = new FormData();
-    const { description, picture, id, rating } = this.state;
+    const { description, picture, id, status, rating } = this.state;
     formData.append('description', description);
     formData.append('picture', picture);
     formData.append('rating', rating);
+    formData.append('status', status);
     formData.append('id', id);
     formData.append('latitude', this.props.marker.position.lat);
     formData.append('longitude', this.props.marker.position.lng);
@@ -80,7 +81,7 @@ class Modal extends Component {
   render() {
     const showHideClassName = this.props.show ? 'modal display-block' : 'modal display-none';
 
-    const { rating } = this.state;
+    const { rating, status } = this.state;
 
     return (
       <div className={showHideClassName}>
@@ -97,6 +98,14 @@ class Modal extends Component {
                 value={rating}
                 onStarClick={this.handleRatingChange}
               />
+            </label>
+
+            <label className="instructions">Pin Status
+              <div className="pin-status-container" onChange={this.handleChange}>
+                <input type="radio" value="past" name="status" /> Past Trip
+                <input type="radio" value="current" name="status" /> Current Trip
+                <input type="radio" value="future" name="status" /> Want to Go
+              </div>
             </label>
 
             <span><button className="modal-btn" type='submit' onClick={this.handleClick}>Add Pin</button></span>

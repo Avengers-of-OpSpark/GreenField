@@ -29,7 +29,8 @@ class MapContainer extends Component {
       newArea: false,
       reload: false,
       markerId: 0,
-      rating: 1
+      rating: 1,
+      status: 'past'
     };
 
     this.onMarkerClick = this.onMarkerClick.bind(this);
@@ -40,6 +41,16 @@ class MapContainer extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.commentFetcher = this.commentFetcher.bind(this);
+    this.handlePinColor = this.handlePinColor.bind(this);
+  }
+
+  handlePinColor() {
+    const { status } = this.state;
+    // status === 'past' ?
+
+    // purple: <img src="https://i.ibb.co/xGCc49D/map-pin-purple.png" alt="map-pin-purple" border="0">
+    // green: <img src="https://i.ibb.co/vZTnLrc/map-pin-green.png" alt="map-pin-green" border="0">
+    // red: <img src="https://i.ibb.co/Ms8w1Hb/map-pin-red.png" alt="map-pin-red" border="0">
   }
 
   markerFetcher() {

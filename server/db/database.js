@@ -63,6 +63,7 @@ const Markers = db.define('Markers', {
     type: Sequelize.INTEGER,
     defaultValue: null
   },
+  status: Sequelize.STRING,
   id_user: Sequelize.INTEGER
 });
 

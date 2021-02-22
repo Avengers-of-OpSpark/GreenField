@@ -46,7 +46,6 @@ class Friends extends Component {
             .then(() => this.setState({ isFriend: false }))
             .catch((err) => console.warn(err));
       })
-      // .then(() => this.fetchUsers)
       .catch((err) => console.warn(err));
   }
 
@@ -56,7 +55,6 @@ class Friends extends Component {
 
   render() {
     const { users } = this.state;
-    users.sort((a, b) => a.username - b.username);
     return (
       <div id="friend-container">
         {
