@@ -22,7 +22,7 @@ router.route('/create').post((req, res) => {
 
   const values = Object.values(req.files);
   const promises = values.map(image => cloudinary.uploader.upload(image.path));
-  const { latitude, longitude, description, id, rating} = req.body;
+  const { latitude, longitude, description, id, rating, status} = req.body;
 
   Promise
     .all(promises)
@@ -33,6 +33,7 @@ router.route('/create').post((req, res) => {
         longitude,
         description,
         rating: rating,
+        status: status,
         // eslint-disable-next-line camelcase
         id_user: id
       });
