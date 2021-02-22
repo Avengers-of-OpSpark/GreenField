@@ -245,3 +245,7 @@ label {
 	color: #dd8d61;
 	cursor: pointer;
 }
+
+.pin-status-container {
+	display: flex;
+}
