@@ -40,17 +40,17 @@ class MapContainer extends Component {
     this.fetchUserMarkers = this.fetchUserMarkers.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.commentFetcher = this.commentFetcher.bind(this);
     this.handlePinColor = this.handlePinColor.bind(this);
+    this.commentFetcher = this.commentFetcher.bind(this);
   }
 
   handlePinColor() {
     const { status } = this.state;
-    // status === 'past' ?
-
-    // purple: <img src="https://i.ibb.co/xGCc49D/map-pin-purple.png" alt="map-pin-purple" border="0">
-    // green: <img src="https://i.ibb.co/vZTnLrc/map-pin-green.png" alt="map-pin-green" border="0">
-    // red: <img src="https://i.ibb.co/Ms8w1Hb/map-pin-red.png" alt="map-pin-red" border="0">
+    status === 'past'
+      ? 'https://i.ibb.co/xGCc49D/map-pin-purple.png'
+      : status === 'current'
+        ? 'https://i.ibb.co/vZTnLrc/map-pin-green.png'
+        : 'https://i.ibb.co/Ms8w1Hb/map-pin-red.png';
   }
 
   markerFetcher() {
@@ -80,6 +80,7 @@ class MapContainer extends Component {
   componentDidMount() {
     this.fetchUserMarkers();
     this.commentFetcher();
+    // this.handlePinColor();
   }
 
   handleChange(event) {
@@ -139,7 +140,7 @@ class MapContainer extends Component {
   }
 
   onInfoWindowOpen(props, e) {
-    const { markers, rating } = this.state;
+    const { markers, rating, status } = this.state;
     const fav = (
       <div>
         <div className="marker-img-container">
@@ -156,7 +157,7 @@ class MapContainer extends Component {
               onClick={this.onHeartClick}
               style={{ color: 'red', float: 'left', padding: '0 5px 0 0' }}></FaRegHeart>
           }
-          <h4> {this.state.selectedPlace.name}</h4>
+          <span><h4> {this.state.selectedPlace.name}</h4></span><span> {`trip status: ${this.state.selectedPlace.status}`}</span>
           <h5><i>Click photo to enlarge</i></h5>
         </div>
         <form action="/comments" method='POST' >
@@ -259,7 +260,7 @@ class MapContainer extends Component {
       height: '100%'
     };
 
-    const { view, rating } = this.state;
+    const { view, rating, status } = this.state;
     const location = this.props.location;
 
     return (
@@ -296,7 +297,10 @@ class MapContainer extends Component {
                 onClick={this.onMarkerClick}
                 picture={marker.imageUrl}
                 rating={marker.rating}
+                status={marker.status}
                 comments={[]}
+                icon={{url: 'https://i.ibb.co/xGCc49D/map-pin-purple.png'}}
+
               >
 
               </Marker>

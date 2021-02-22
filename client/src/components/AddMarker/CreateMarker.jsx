@@ -20,12 +20,14 @@ class CreateMarker extends Component {
       isOpen: false,
       description: '',
       picture: null,
-      rating: 1
+      rating: 1,
+      status: 'past'
     };
 
     this.onMarkerDragEnd = this.onMarkerDragEnd.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    // this.handlePinColor = this.handlePinColor.bind(this);
 
   }
 
@@ -49,8 +51,25 @@ class CreateMarker extends Component {
     this.handleOpenModal();
   }
 
+  // handlePinColor() {
+  //   const { status } = this.state;
+  //   status === 'past'
+  //     ? 'https://i.ibb.co/xGCc49D/map-pin-purple.png'
+  //     : status === 'current'
+  //       ? 'https://i.ibb.co/vZTnLrc/map-pin-green.png'
+  //       : 'https://i.ibb.co/Ms8w1Hb/map-pin-red.png';
+
+  //   // purple: <img src="https://i.ibb.co/xGCc49D/map-pin-purple.png" alt="map-pin-purple" border="0">
+  //   // green: <img src="https://i.ibb.co/vZTnLrc/map-pin-green.png" alt="map-pin-green" border="0">
+  //   // red: <img src="https://i.ibb.co/Ms8w1Hb/map-pin-red.png" alt="map-pin-red" border="0">
+  // }
+
+  // componentDidMount() {
+  //   this.handlePinColor();
+  // }
+
   render() {
-    const { marker } = this.state;
+    const { marker, status } = this.state;
     const style = {
       justifyContent: 'center',
       alignItems: 'center',
@@ -120,7 +139,6 @@ class CreateMarker extends Component {
           ]
       }
     ];
-
 
     return (
       <div>
